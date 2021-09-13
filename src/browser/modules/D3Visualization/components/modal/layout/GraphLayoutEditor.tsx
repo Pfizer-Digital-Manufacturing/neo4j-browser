@@ -1,82 +1,127 @@
 import * as React from 'react'
-import { SimpleButton } from 'project-root/src/browser/modules/D3Visualization/components/modal/styled'
+import { SimpleButton } from '../../modal/styled'
 import styled from 'styled-components'
-const LabelsContainer = styled.div`
-  margin: 5px 20px;
-  @media screen and (min-width: 900px) {
-    min-width: 500px;
-  }
-`
-const NodeDiv = styled.div`
-  background: white;
-  color: black;
-  border: 1px solid black;
-  border-radius: 50%;
-  padding: 10px;
-  text-align: center;
-  display: inline-block;
-  margin: 5px 3px;
-`
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors
+} from '@dnd-kit/core'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy
+} from '@dnd-kit/sortable'
+import { DragStartEvent } from '@dnd-kit/core/dist/types'
+import GraphLayoutSortableItem from 'project-root/src/browser/modules/D3Visualization/components/modal/layout/GraphLayoutSortableItem'
+import GraphLayoutItem from 'project-root/src/browser/modules/D3Visualization/components/modal/layout/GraphLayoutItem'
+
 interface ILabel {
   key: string
   count: number
 }
+
+const LabelsContainer = styled.div`
+  margin: 5px 20px;
+  max-height: 400px;
+  overflow-y: auto;
+  @media screen and (min-width: 900px) {
+    min-width: 500px;
+  }
+`
+const AbsoluteDiv = styled.div`
+  position: absolute;
+  opacity: 0;
+`
 const GraphLayoutEditor: React.FC<{
   closeSortEditing: () => void
   labels: ILabel[]
 }> = ({ closeSortEditing, labels }) => {
+  const [activeId, setActiveId] = React.useState<string | null>(null)
+  const [items, setItems] = React.useState(
+    labels.map(t => Object.assign({ id: t.key }, t))
+  )
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates
+    })
+  )
+  React.useEffect(() => {
+    setItems(items => {
+      for (let i = 0; i < 100; i++) {
+        items.push({
+          key: i + '',
+          id: i + '',
+          count: Math.floor(Math.random() * 100)
+        })
+      }
+      return items.slice()
+    })
+  }, [])
+  const handleDragStart: (event: DragStartEvent) => void = React.useCallback(
+    event => {
+      const { active } = event
+      setActiveId(active.id)
+    },
+    [setActiveId]
+  )
+
+  const handleDragEnd: (event: DragEndEvent) => void = React.useCallback(
+    event => {
+      const { active, over } = event
+      if (over && active.id !== over.id) {
+        setItems(items => {
+          const oldIndex = items.findIndex(t => t.id === active.id)
+          const newIndex = items.findIndex(t => t.id === over.id)
+
+          return arrayMove(items, oldIndex, newIndex)
+        })
+      }
+
+      setActiveId(null)
+    },
+    [setActiveId]
+  )
+
+  const activeItem = React.useMemo(() => items.find(t => t.id === activeId), [
+    items,
+    activeId
+  ])
   return (
     <div>
       <p>
         <SimpleButton onClick={closeSortEditing}>Back</SimpleButton>
       </p>
-      <h5>Preview:</h5>
-      <LabelsContainer>
-        {labels.map(label => (
-          <NodeDisplay key={label.key} label={label} />
-        ))}
-      </LabelsContainer>
+      <h5>Drag nodes to change their display order in the graph:</h5>
+
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext items={items} strategy={verticalListSortingStrategy}>
+          <LabelsContainer>
+            {items.map(item => (
+              <GraphLayoutSortableItem key={item.id} item={item} />
+            ))}
+          </LabelsContainer>
+        </SortableContext>
+
+        <DragOverlay>
+          {activeItem ? (
+            <GraphLayoutItem item={activeItem} hide={true} />
+          ) : null}
+        </DragOverlay>
+      </DndContext>
     </div>
   )
 }
 
-const FlexContainer = styled.div`
-  display: flex;
-  text-align: center;
-
-  &:not(:last-child) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-  }
-`
-const FirstCol = styled.div`
-  flex: 1;
-  line-height: 40px;
-`
-const SecondCol = styled.div`
-  flex: 6;
-`
-const PlaceholderSpan = styled.span`
-  font-size: 169%;
-  margin: 0 5px;
-`
-const NodeDisplay: React.FC<{ label: ILabel }> = ({ label }) => {
-  const nodes: React.ReactNode[] = React.useMemo(() => {
-    const result: React.ReactNode[] = []
-    for (let i = 0; i < Math.min(label.count, 5); i++) {
-      result.push(<NodeDiv key={i}>{label.key}</NodeDiv>)
-    }
-    if (label.count > 5) {
-      result.push(<PlaceholderSpan key={'end'}>...</PlaceholderSpan>)
-      result.unshift(<PlaceholderSpan key={'start'}>...</PlaceholderSpan>)
-    }
-    return result
-  }, [label])
-
-  return (
-    <FlexContainer>
-      <FirstCol>({label.count})</FirstCol>
-      <SecondCol>{nodes}</SecondCol>
-    </FlexContainer>
-  )
-}
 export default GraphLayoutEditor
