@@ -30,10 +30,12 @@ import {
   ZoomOutIcon
 } from 'browser-components/icons/Icons'
 import graphView from '../lib/visualization/components/graphView'
-import GraphLayoutModal from './modal/GraphLayoutModal'
+import GraphLayoutModal from 'browser/modules/D3Visualization/components/modal/layout/GraphLayoutModal'
 import Graph from 'project-root/src/browser/modules/D3Visualization/lib/visualization/components/graph'
 export const PERSIST_LAYOUT_KEY = 'persistLayout'
 export const PERSIST_LAYOUT_DIRECTION = 'directional'
+export const PERSIST_LAYOUT_TYPE = 'type'
+
 export interface IGraphLayoutStats {
   labels: {
     '*': IGraphStat
