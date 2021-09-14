@@ -1022,37 +1022,6 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@dnd-kit/accessibility@^3.0.0":
-  version "3.0.0"
-  resolved "https://neo.jfrog.io/neo/api/npm/npm/@dnd-kit/accessibility/-/accessibility-3.0.0.tgz#b56e3750414fd907b7d6972b3116aa8f96d07fde"
-  integrity sha1-tW43UEFP2Qe31pcrMRaqj5bQf94=
-  dependencies:
-    tslib "^2.0.0"
-
-"@dnd-kit/core@^3.1.1":
-  version "3.1.1"
-  resolved "https://neo.jfrog.io/neo/api/npm/npm/@dnd-kit/core/-/core-3.1.1.tgz#c5ad6665931f5a51e74226220e58ac7514f3faf0"
-  integrity sha1-xa1mZZMfWlHnQiYiDlisdRTz+vA=
-  dependencies:
-    "@dnd-kit/accessibility" "^3.0.0"
-    "@dnd-kit/utilities" "^2.0.0"
-    tslib "^2.0.0"
-
-"@dnd-kit/sortable@^4.0.0":
-  version "4.0.0"
-  resolved "https://neo.jfrog.io/neo/api/npm/npm/@dnd-kit/sortable/-/sortable-4.0.0.tgz#81dd2b014a16527cf89602dc40060d9ee4dad352"
-  integrity sha1-gd0rAUoWUnz4lgLcQAYNnuTa01I=
-  dependencies:
-    "@dnd-kit/utilities" "^2.0.0"
-    tslib "^2.0.0"
-
-"@dnd-kit/utilities@^2.0.0":
-  version "2.0.0"
-  resolved "https://neo.jfrog.io/neo/api/npm/npm/@dnd-kit/utilities/-/utilities-2.0.0.tgz#a8462dff65c6f606ecbe95273c7e263b14a1ab97"
-  integrity sha1-qEYt/2XG9gbsvpUnPH4mOxShq5c=
-  dependencies:
-    tslib "^2.0.0"
-
 "@emotion/cache@^10.0.9":
   version "10.0.29"
   resolved "https://neo.jfrog.io/neo/api/npm/npm/@emotion/cache/-/cache-10.0.29.tgz#87e7e64f412c060102d589fe7c6dc042e6f9d1e0"
@@ -12920,11 +12889,6 @@ tslib@^1.10.0, tslib@^1.11.1, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.13.0"
   resolved "https://neo.jfrog.io/neo/api/npm/npm/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha1-yIHhPMcBWJTtkUhi0nZDb6mkcEM=
-
-tslib@^2.0.0:
-  version "2.3.1"
-  resolved "https://neo.jfrog.io/neo/api/npm/npm/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
-  integrity sha1-6KM1rdXOrlGqJh0ypJAVjvBC7wE=
 
 tslib@^2.1.0:
   version "2.3.0"

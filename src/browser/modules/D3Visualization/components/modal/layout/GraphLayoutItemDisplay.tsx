@@ -1,5 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const FlexContainer = styled.div`
   display: flex;
@@ -35,7 +36,11 @@ interface ILabel {
   key: string
   count: number
 }
-const GraphLayoutItemDisplay: React.FC<{ label: ILabel }> = ({ label }) => {
+const GraphLayoutItemDisplay: React.FC<{
+  label: ILabel
+  onUp: (item: ILabel) => void
+  onDown: (item: ILabel) => void
+}> = ({ label, onUp, onDown }) => {
   const nodes: React.ReactNode[] = React.useMemo(() => {
     const result: React.ReactNode[] = []
     for (let i = 0; i < Math.min(label.count, 5); i++) {
@@ -48,11 +53,23 @@ const GraphLayoutItemDisplay: React.FC<{ label: ILabel }> = ({ label }) => {
     return result
   }, [label])
 
+  const handleUpClick = React.useCallback(() => onUp(label), [label, onUp])
+  const handleDownClick = React.useCallback(() => onDown(label), [
+    label,
+    onDown
+  ])
+
   return (
-    <FlexContainer>
-      <FirstCol>({label.count})</FirstCol>
-      <SecondCol>{nodes}</SecondCol>
-    </FlexContainer>
+    <motion.div layout={true}>
+      <FlexContainer>
+        <FirstCol>
+          <div onClick={handleUpClick}>Up</div>
+          <div onClick={handleDownClick}>Down</div>
+        </FirstCol>
+        <FirstCol>({label.count})</FirstCol>
+        <SecondCol>{nodes}</SecondCol>
+      </FlexContainer>
+    </motion.div>
   )
 }
 export default GraphLayoutItemDisplay
