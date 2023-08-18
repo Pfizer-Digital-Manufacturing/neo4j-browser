@@ -108,23 +108,25 @@ export const PropertiesTable = ({
                     textToCopy={`${key}: ${value}`}
                     iconSize={12}
                   />
-                  {key === 'cypher' && executeCypher && value && (
-                    <CypherExecDiv>
-                      <button
-                        title={'Execute cypher'}
-                        onClick={() => {
-                          if (executeCypher && value) {
-                            executeCypher(value)
-                          }
-                        }}
-                      >
-                        <i
-                          className="fa fa-external-link"
-                          aria-hidden="true"
-                        ></i>
-                      </button>
-                    </CypherExecDiv>
-                  )}
+                  {key.toLowerCase().includes('cypher') &&
+                    executeCypher &&
+                    value && (
+                      <CypherExecDiv>
+                        <button
+                          title={'Execute cypher'}
+                          onClick={() => {
+                            if (executeCypher && value) {
+                              executeCypher(value)
+                            }
+                          }}
+                        >
+                          <i
+                            className="fa fa-external-link"
+                            aria-hidden="true"
+                          ></i>
+                        </button>
+                      </CypherExecDiv>
+                    )}
                 </td>
               </tr>
             ))}
