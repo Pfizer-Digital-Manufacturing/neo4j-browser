@@ -92,6 +92,11 @@ const SetupLabelProperties: React.FC<IProps> = ({
   )
 
   const [customInput, setCustomInput] = React.useState('')
+  React.useEffect(() => {
+    if (selectedCaption) {
+      setCustomInput(selectedCaption)
+    }
+  }, [selectedCaption])
   const handleCustomInputChange: React.ChangeEventHandler<HTMLInputElement> =
     React.useCallback(
       event => {
@@ -168,7 +173,11 @@ const SetupLabelProperties: React.FC<IProps> = ({
                 type={'radio'}
                 name={inputName}
                 value={customInput}
-                checked={customInput === selectedCaption}
+                checked={
+                  customInput === selectedCaption &&
+                  !customInput.startsWith('{') &&
+                  !customInput.endsWith('}')
+                }
                 onChange={handleRadioInputChange}
               />
               <PropertyInput
