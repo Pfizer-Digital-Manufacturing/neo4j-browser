@@ -193,7 +193,7 @@
     "canvg": "^3.0.7",
     "colord": "^2.7.0",
     "core-js": "3",
-    "cypher-beautifier": "^0.0.8",
+    "cypher-beautifier": "^0.0.9",
     "cypher-editor-support": "^1.1.11",
     "d3-color": "^3.0.1",
     "d3-drag": "^3.0.0",
