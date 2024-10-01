@@ -58,6 +58,7 @@ import fileDrop from './svgs/task-list-download.svg'
 import text from './svgs/text.svg'
 import updateFavorite from './svgs/update-favorite.svg'
 import updateFile from './svgs/update-file.svg'
+import reorder from './svgs/reorder-four-outline.svg'
 
 const inactive = `
   color: #797979;
@@ -498,3 +499,11 @@ export const StopIcon = ({
   width?: number
   title?: string
 }): JSX.Element => <IconContainer icon={stop} width={width} title={title} />
+
+export const ReOrderIcon = ({
+  width,
+  title
+}: {
+  width?: number
+  title?: string
+}): JSX.Element => <IconContainer icon={reorder} width={width} title={title} />

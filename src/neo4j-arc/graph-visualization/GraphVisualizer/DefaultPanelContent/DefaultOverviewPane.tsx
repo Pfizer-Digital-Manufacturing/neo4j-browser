@@ -20,6 +20,8 @@
 import React, { useState } from 'react'
 
 import {
+  BasicNode,
+  BasicRelationship,
   numberToUSLocale,
   ShowMoreOrAll,
   WarningMessage
@@ -39,8 +41,6 @@ import {
 
 import { NodeLabel } from './NodeLabel'
 import { RelType } from './RelType'
-import { RelationshipModel } from 'neo4j-arc/graph-visualization/models/Relationship'
-import { NodeModel } from 'neo4j-arc/graph-visualization/models/Node'
 
 type PaneBodySectionHeaderProps = {
   title: string
@@ -71,8 +71,8 @@ export type OverviewPaneProps = {
   relationshipCount: number | null
   stats: GraphStats
   infoMessage: string | null
-  relationships: RelationshipModel[]
-  nodes: NodeModel[]
+  relationships: BasicRelationship[]
+  nodes: BasicNode[]
 }
 
 export const OVERVIEW_STEP_SIZE = 50

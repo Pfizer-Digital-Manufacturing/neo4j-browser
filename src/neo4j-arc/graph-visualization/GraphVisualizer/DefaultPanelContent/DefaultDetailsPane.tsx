@@ -19,23 +19,27 @@
  */
 import React, { useState } from 'react'
 
-import { ClipboardCopier, PropertiesTable, upperFirst } from 'neo4j-arc/common'
+import {
+  BasicNode,
+  BasicRelationship,
+  ClipboardCopier,
+  PropertiesTable,
+  upperFirst
+} from 'neo4j-arc/common'
 import { NodeItem, RelationshipItem } from '../../types'
 
 import { PaneBody, PaneHeader, PaneTitle, PaneWrapper } from './styled'
 import { NodeLabel } from './NodeLabel'
 import { RelType } from './RelType'
 import { GraphStyleModel } from '../../models/GraphStyle'
-import { NodeModel } from 'neo4j-arc/graph-visualization/models/Node'
-import { RelationshipModel } from 'neo4j-arc/graph-visualization/models/Relationship'
 
 export const DETAILS_PANE_STEP_SIZE = 1000
 export type DetailsPaneProps = {
   vizItem: NodeItem | RelationshipItem
   graphStyle: GraphStyleModel
   nodeInspectorWidth: number
-  nodes: NodeModel[]
-  relationships: RelationshipModel[]
+  nodes: BasicNode[]
+  relationships: BasicRelationship[]
 }
 export function DefaultDetailsPane({
   vizItem,

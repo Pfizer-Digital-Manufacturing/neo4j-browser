@@ -19,7 +19,12 @@
  */
 import React, { Component } from 'react'
 
-import { ChevronLeftIcon, ChevronRightIcon } from '../../common'
+import {
+  BasicNode,
+  BasicRelationship,
+  ChevronLeftIcon,
+  ChevronRightIcon
+} from '../../common'
 
 import {
   DefaultDetailsPane,
@@ -38,8 +43,6 @@ import { Resizable } from 're-resizable'
 import { GraphStats } from '../utils/mapper'
 import { GraphStyleModel } from '../models/GraphStyle'
 import { VizItem } from '../types'
-import { NodeModel } from 'neo4j-arc/graph-visualization/models/Node'
-import { RelationshipModel } from 'neo4j-arc/graph-visualization/models/Relationship'
 
 interface NodeInspectorPanelProps {
   expanded: boolean
@@ -53,8 +56,8 @@ interface NodeInspectorPanelProps {
   width: number
   DetailsPaneOverride?: React.FC<DetailsPaneProps>
   OverviewPaneOverride?: React.FC<OverviewPaneProps>
-  nodes: NodeModel[]
-  relationships: RelationshipModel[]
+  nodes: BasicNode[]
+  relationships: BasicRelationship[]
 }
 
 export const defaultPanelWidth = (): number =>

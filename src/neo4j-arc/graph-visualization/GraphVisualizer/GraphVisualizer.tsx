@@ -37,8 +37,6 @@ import { GetNodeNeighboursFn, VizItem } from '../types'
 import { GraphStats } from '../utils/mapper'
 import { GraphModel } from '../models/Graph'
 import { GraphInteractionCallBack } from './Graph/GraphEventHandlerModel'
-import { RelationshipModel } from 'neo4j-arc/graph-visualization/models/Relationship'
-import { NodeModel } from 'neo4j-arc/graph-visualization/models/Node'
 import NeighboursPickerModal, {
   INeighboursPickerPopoverProps
 } from 'project-root/src/browser/modules/Stream/CypherFrame/VisualizationView/PropertiesPanelContent/modal/NeighboursPickerModal'
@@ -66,8 +64,6 @@ type GraphVisualizerDefaultProps = {
 type GraphVisualizerProps = GraphVisualizerDefaultProps & {
   relationships: BasicRelationship[]
   nodes: BasicNode[]
-  graphNodes: NodeModel[]
-  graphRelationships: RelationshipModel[]
   maxNeighbours?: number
   graphStyleData?: any
   getNeighbours?: (
@@ -291,7 +287,6 @@ export class GraphVisualizer extends Component<
     const graphStyle = this.state.freezeLegend
       ? new GraphStyleModel(this.props.useGeneratedDefaultColors)
       : this.state.graphStyle
-
     return (
       <StyledFullSizeContainer id="svg-vis">
         <Graph
@@ -323,8 +318,8 @@ export class GraphVisualizer extends Component<
           hasTruncatedFields={this.props.hasTruncatedFields}
           hoveredItem={this.state.hoveredItem}
           selectedItem={this.state.selectedItem}
-          nodes={this.props.graphNodes}
-          relationships={this.props.graphRelationships}
+          nodes={this.props.nodes}
+          relationships={this.props.relationships}
           stats={this.state.stats}
           width={this.state.width}
           setWidth={(width: number) =>

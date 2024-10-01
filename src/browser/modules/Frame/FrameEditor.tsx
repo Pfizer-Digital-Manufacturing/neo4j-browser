@@ -68,6 +68,7 @@ import { NEO4J_BROWSER_USER_ACTION_QUERY } from 'services/bolt/txMetadata'
 import { QueryResult } from 'neo4j-driver'
 import { CypherEditor } from 'neo4j-arc/cypher-language-support'
 import { KeyCode } from 'monaco-editor'
+import BeautifyEditorButton from '../shared/BeautifyEditorButton'
 
 type FrameEditorBaseProps = {
   frame: Frame
@@ -237,6 +238,7 @@ function FrameEditor({
             </DottedLineHover>
           </StyledFrameCommand>
         )}
+        <BeautifyEditorButton editor={editorRef.current ?? undefined} />
         {request?.status === REQUEST_STATUS_PENDING ? (
           <StyledEditorButton
             data-testid="stopRunFrameButton"

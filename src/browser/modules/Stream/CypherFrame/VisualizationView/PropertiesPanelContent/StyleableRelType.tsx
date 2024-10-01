@@ -20,20 +20,22 @@
 import React from 'react'
 import { Popup } from 'semantic-ui-react'
 
-import { StyledRelationshipChip } from 'neo4j-arc/common'
+import {
+  BasicNode,
+  BasicRelationship,
+  StyledRelationshipChip
+} from 'neo4j-arc/common'
 import { GraphStyleModel } from 'neo4j-arc/graph-visualization'
 
 import { GrassEditor } from './GrassEditor'
-import { NodeModel } from 'neo4j-arc/graph-visualization/models/Node'
 import { usePopupControlled } from './StyleableNodeLabel'
-import { RelationshipModel } from 'neo4j-arc/graph-visualization/models/Relationship'
 import { useTheme } from 'styled-components'
 
 export type StyleableRelTypeProps = {
   graphStyle: GraphStyleModel
   selectedRelType: { relType: string; propertyKeys: string[]; count?: number }
-  nodes: NodeModel[]
-  relationships: RelationshipModel[]
+  nodes: BasicNode[]
+  relationships: BasicRelationship[]
 }
 export function StyleableRelType({
   selectedRelType,

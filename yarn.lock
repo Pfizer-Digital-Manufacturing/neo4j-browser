@@ -4945,6 +4945,11 @@ cyclist@^1.0.1:
   resolved "https://registry.npmjs.org/cyclist/-/cyclist-1.0.1.tgz"
   integrity "sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk= sha512-NJGVKPS81XejHcLhaLJS7plab0fK3slPh11mESeeDq2W4ZI5kUKK/LRRdVDvjJseojbPB7ZwjnyOybg3Igea/A=="
 
+cypher-beautifier@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/cypher-beautifier/-/cypher-beautifier-0.0.8.tgz#0dde6172fa54f4812eeaeb2600f7dea6b97f86a2"
+  integrity sha512-rY3NRqdFIqEl5TvfV/1TBtHjbVN7nhEdevgsJ361ONp0E9iKUKX5OeQhikenazK+QqRhlIfXw5ZNr82coxWIfA==
+
 cypher-editor-support@^1.1.11:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/cypher-editor-support/-/cypher-editor-support-1.1.11.tgz#c85dc8782dce941c6346435af21c26d151617876"

@@ -90,6 +90,7 @@ import {
   printShortcut
 } from 'browser/modules/App/keyboardShortcuts'
 import { KeyCode } from 'monaco-editor'
+import BeautifyEditorButton from '../shared/BeautifyEditorButton'
 
 type EditorFrameProps = {
   bus: Bus
@@ -347,6 +348,7 @@ export function MainEditor({
               )}
             </StyledEditorButton>
           )}
+          <BeautifyEditorButton editor={editorRef.current ?? undefined} />
           <StyledEditorButton
             data-testid="editor-Run"
             onClick={createRunCommandFunction(commandSources.playButton)}

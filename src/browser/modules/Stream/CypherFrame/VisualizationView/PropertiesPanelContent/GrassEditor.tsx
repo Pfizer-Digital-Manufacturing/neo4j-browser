@@ -24,7 +24,7 @@ import { connect } from 'react-redux'
 // eslint-disable-next-line no-restricted-imports
 import { Action, Dispatch } from 'redux'
 
-import { toKeyString } from 'neo4j-arc/common'
+import { BasicNode, BasicRelationship, toKeyString } from 'neo4j-arc/common'
 import { GraphStyleModel, Selector } from 'neo4j-arc/graph-visualization'
 
 import {
@@ -50,8 +50,6 @@ import PhotoshopColorModal from './modal/simpleColor/PhotoshopColorModal'
 import SetupColorModal from './modal/color/SetupColorModal'
 import SingleColorModal from './modal/singleColor/SingleColorModal'
 import { RelArrowCaptionPosition } from './modal/label/SetupLabelRelArrowSVG'
-import { RelationshipModel } from 'neo4j-arc/graph-visualization/models/Relationship'
-import { NodeModel } from 'neo4j-arc/graph-visualization/models/Node'
 
 export interface IStyleForLabelProps {
   'border-color': string
@@ -79,8 +77,8 @@ export interface IStyleForLabel {
   }
 }
 type GrassEditorProps = {
-  nodes: NodeModel[]
-  relationships: RelationshipModel[]
+  nodes: BasicNode[]
+  relationships: BasicRelationship[]
   graphStyleData?: any
   graphStyle?: GraphStyleModel
   update?: any
@@ -93,6 +91,8 @@ export function stringSorter(a: string, b: string) {
   if (!isNaN(an) && !isNaN(bn)) {
     return an - bn
   } else {
+    a = a + ''
+    b = b + ''
     return a.localeCompare(b, undefined, { sensitivity: 'base' })
   }
 }
@@ -371,7 +371,7 @@ export class GrassEditorComponent extends Component<GrassEditorProps> {
     itemStyle,
     isForNode
   }: {
-    items: Array<Pick<NodeModel, 'propertyMap'>>
+    items: Array<Pick<BasicNode, 'properties'>>
     itemStyle: IStyleForLabel
     isForNode: boolean
   }) {
@@ -379,12 +379,12 @@ export class GrassEditorComponent extends Component<GrassEditorProps> {
       [key: string]: Set<string>
     } = {}
     items.forEach(item => {
-      for (const key in item.propertyMap) {
-        if (item.propertyMap.hasOwnProperty(key)) {
+      for (const key in item.properties) {
+        if (item.properties.hasOwnProperty(key)) {
           if (propertiesSet[key]) {
-            propertiesSet[key].add(item.propertyMap[key])
+            propertiesSet[key].add(item.properties[key])
           } else {
-            propertiesSet[key] = new Set<string>([item.propertyMap[key]])
+            propertiesSet[key] = new Set<string>([item.properties[key]])
           }
         }
       }
