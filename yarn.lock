@@ -4945,10 +4945,10 @@ cyclist@^1.0.1:
   resolved "https://registry.npmjs.org/cyclist/-/cyclist-1.0.1.tgz"
   integrity "sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk= sha512-NJGVKPS81XejHcLhaLJS7plab0fK3slPh11mESeeDq2W4ZI5kUKK/LRRdVDvjJseojbPB7ZwjnyOybg3Igea/A=="
 
-cypher-beautifier@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/cypher-beautifier/-/cypher-beautifier-0.0.9.tgz#46719d2bf42ce984b1d44c60af429830a1d9c7e2"
-  integrity sha512-bYGM5CpnR8VR5K+K3+EGisihwQw6cbhcQ3Yqh4bqXP3uo5s0KKSwVCvao/ZS19G5d9Zj87Tg/UptfEoROjn7ZA==
+cypher-beautifier@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/cypher-beautifier/-/cypher-beautifier-0.0.12.tgz#ca687362239ffa68c5b3f1e6e223539df1cac495"
+  integrity sha512-VmgguNV5f7LtdkHGJM35J8pXI60t4rEEkC8rO1mQpxJaasq+6bdTcfODn6QR3ZODRwhWHK9FF2eQa5SxsqBsfw==
 
 cypher-editor-support@^1.1.11:
   version "1.1.11"

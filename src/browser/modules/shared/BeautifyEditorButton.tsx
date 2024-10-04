@@ -16,11 +16,16 @@ const BeautifyEditorButton: React.FC<{ editor?: CypherEditor }> = ({
           try {
             editor.setValue(
               beautifyCypher(editor.getValue(), {
-                parseStrings: false
+                parseStrings: true
               })
             )
           } catch (e) {
             console.error(e)
+            editor.setValue(
+              beautifyCypher(editor.getValue(), {
+                parseStrings: false
+              })
+            )
           }
         }
       }}
