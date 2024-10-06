@@ -32,7 +32,7 @@ const BeautifyEditorButton: React.FC<{ editor?: CypherEditor }> = ({
       key="editor-reorder"
       color={base.primary}
     >
-      <ReOrderIcon width={20} />
+      <ReOrderIcon width={20} title={'Beautify'} />
     </StyledEditorButton>
   )
 }
