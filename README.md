@@ -6,6 +6,7 @@ You can also use direct [file download link](https://github.com/Pfizer-Digital-M
 2. Added `Label Setup` button to configure label display for nodes and relationships
 3. Added `Color Setup` button to configure node coloring based on the properties
 4. Added `Layout` button to automatically order rendered nodes
+5. Added a `Beautify` button in the cypher query frame to format the query input
 
 # Neo4j Browser
 
