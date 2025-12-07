@@ -32,6 +32,9 @@ export const FIRST_MULTI_DB_SUPPORT = NEO4J_4_0
 // compatible bolt server.
 export const FIRST_NO_MULTI_DB_SUPPORT = '3.4.0'
 
+export const FIRST_GQL_NOTIFICATIONS_SUPPORT = '5.23.0'
+export const FIRST_GQL_ERRORS_SUPPORT = '5.26.0'
+
 export const getShowCurrentUserProcedure = (serverVersion: string) => {
   const serverVersionGuessed = guessSemverVersion(serverVersion)
 
@@ -92,28 +95,6 @@ export const getDefaultBoltScheme = (serverVersion: string | null) => {
   }
   if (serverVersionGuessed && semver.gte(serverVersionGuessed, NEO4J_4_0)) {
     return 'neo4j://'
-  }
-  return pre4
-}
-
-export const changeUserPasswordQuery = (
-  serverVersion: string,
-  oldPw: any,
-  newPw: any
-) => {
-  const pre4 = {
-    query: 'CALL dbms.security.changePassword($password)',
-    parameters: { password: newPw }
-  }
-  const semverVersion = guessSemverVersion(serverVersion)
-  if (!semver.valid(semverVersion)) {
-    return pre4
-  }
-  if (semverVersion && semver.gte(semverVersion, NEO4J_4_0)) {
-    return {
-      query: 'ALTER CURRENT USER SET PASSWORD FROM $oldPw TO $newPw',
-      parameters: { oldPw, newPw }
-    }
   }
   return pre4
 }
