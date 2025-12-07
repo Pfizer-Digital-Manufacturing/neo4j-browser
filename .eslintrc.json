@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": ["plugin:react/recommended", "prettier"],
   "parserOptions": {
     "sourceType": "module"
@@ -17,6 +17,7 @@
     "react/no-deprecated": "warn",
     "react/display-name": "warn",
     "react/no-unescaped-entities": "off",
+    "react/no-unknown-property": "off",
     "import/no-webpack-loader-syntax": "off"
     //    "no-restricted-imports": [
     //      "error",
@@ -79,12 +80,15 @@
         "@typescript-eslint/no-this-alias": "warn",
         "@typescript-eslint/no-unused-vars": "warn",
         "@typescript-eslint/no-var-requires": "warn",
+        "@typescript-eslint/no-unnecessary-type-constraint": "warn",
+        "@typescript-eslint/no-loss-of-precision": "warn",
         "no-var": "warn",
         "prefer-rest-params": "warn",
         "prefer-spread": "warn",
         "react-hooks/exhaustive-deps": "warn",
         "react-hooks/rules-of-hooks": "warn",
         "react/no-unescaped-entities": "warn",
+        "react/no-unknown-property": "off",
         "react/prop-types": "off"
       }
     },

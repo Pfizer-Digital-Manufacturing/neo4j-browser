@@ -31,6 +31,7 @@ import {
   detectActiveConnectionChangeEpic,
   disconnectEpic,
   disconnectSuccessEpic,
+  handleForcePasswordChangeEpic,
   initialSwitchConnectionFailEpic,
   retainCredentialsSettingsEpic,
   silentDisconnectEpic,
@@ -52,7 +53,6 @@ import {
   adHocCypherRequestEpic,
   clusterCypherRequestEpic,
   cypherRequestEpic,
-  handleForcePasswordChangeEpic,
   routedCypherReadRequestEpic,
   routedCypherWriteRequestEpic
 } from './modules/cypher/cypherDuck'
@@ -89,6 +89,7 @@ import {
 import {
   trackCommandUsageEpic,
   trackErrorFramesEpic,
+  trackPreviewEpic,
   trackReduxActionsEpic,
   udcStartupEpic
 } from './modules/udc/udcDuck'
@@ -148,5 +149,6 @@ export default combineEpics(
   trackReduxActionsEpic,
   initializeCypherEditorEpic,
   updateEditorSupportSchemaEpic,
-  fetchRemoteGuideEpic
+  fetchRemoteGuideEpic,
+  trackPreviewEpic
 )

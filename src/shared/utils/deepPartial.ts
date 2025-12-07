@@ -17,19 +17,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import { formatDocVersion } from './docsUtils'
 
-test('formatDocVersion', () => {
-  const tests = [
-    { test: undefined, expect: 'current' },
-    { test: '', expect: 'current' },
-    { test: '1.1.0', expect: '1.1' },
-    { test: '1.1.0-beta01', expect: '1.1-preview' },
-    { test: '1.1.2', expect: '1.1' },
-    { test: '2.1.10', expect: '2.1' },
-    { test: '2025.01.0', expect: 'current' },
-    { test: '2024.11.10', expect: 'current' }
-  ]
-
-  tests.forEach(t => expect(formatDocVersion(t.test)).toEqual(t.expect))
-})
+export type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>
+    }
+  : T
